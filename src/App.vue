@@ -12,12 +12,12 @@
       <!-- loading  screen -->
       <div class="loading" v-if="loading">Loading...</div>
 
-      <!-- list screen / home -->
+      <!-- list screen / main -->
       <div v-else>
         
         <!-- header -->
-        <hero />
-        <!-- pages -->
+        <Header />
+        <!-- content -->
         <router-view/>
       </div>
     </div>
@@ -25,15 +25,15 @@
 </template>
 
 <script>
+import Header from './components/Header';
 import axios from 'axios';
 
 const proxy = 'https://cors-anywhere.herokuapp.com/';
-//import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
   components: {
-  //  HelloWorld
+   Header
   },
   data(){
     return {
@@ -55,8 +55,8 @@ export default {
         this.serverHealth = res.status,
         this.serverMessage = res.data
         })
-      .catch(error => {
-        //console.log(error),
+      .catch(err => {
+        alert(err);
         this.errored = true 
       })
       .finally(() => this.loading = false)
